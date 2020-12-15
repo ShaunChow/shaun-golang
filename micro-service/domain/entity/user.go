@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"gorm.io/gorm"
 	"html"
 	"strings"
 	"time"
@@ -27,7 +28,7 @@ type PublicUser struct {
 }
 
 //BeforeSave is a gorm hook
-func (u *User) BeforeSave() error {
+func (u *User) BeforeSave(db *gorm.DB) error {
 	hashPassword, err := security.Hash(u.Password)
 	if err != nil {
 		return err
