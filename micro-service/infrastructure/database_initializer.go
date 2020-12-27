@@ -1,16 +1,20 @@
 package infrastructure
 
 import (
-	"github.com/shaun-golang/micro-service/domain/entity"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"github.com/spf13/viper"
+
+	"github.com/shaun-golang/micro-service/domain/entity"
 )
 
+// DB database connection
 var DB *gorm.DB
 
+// InitDB from Config
 func InitDB() {
 
-	db, err := gorm.Open(sqlite.Open("./resource/database/sqlite.db"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open(viper.GetString("datasource.sqlite.filepath")), &gorm.Config{})
 	if err != nil {
 		panic("Failed to connect to database!")
 	}

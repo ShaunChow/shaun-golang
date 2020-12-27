@@ -1,0 +1,8 @@
+name: shaun-micro
+
+server:
+  port: 8080
+
+datasource:
+  sqlite:
+    filepath: ./resource/database/sqlite.db

@@ -2,12 +2,16 @@ package rest
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
+
 	"github.com/shaun-golang/micro-service/domain"
 	"github.com/shaun-golang/micro-service/interface/rest/handler"
 )
 
+// SERVER ginEngine
 var SERVER *gin.Engine
 
+// InitGin from config
 func InitGin() {
 
 	users := handler.NewUsers(domain.UserRepository)
@@ -18,8 +22,8 @@ func InitGin() {
 	server.GET("/users", users.GetUsers)
 	server.GET("/users/:user_id", users.GetUser)
 
-	err := server.Run(":8080")
+	err := server.Run(":" + viper.GetString("server.port"))
 	if err != nil {
-		panic("Failed to run gin on port:8080!")
+		panic("Failed to run gin on port:" + viper.GetString("server.port") + "!")
 	}
 }
