@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+
 	"github.com/shaun-golang/micro-service/application"
 	"github.com/shaun-golang/micro-service/domain/entity"
 )
@@ -52,7 +53,7 @@ func (s *Users) GetUsers(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, users.PublicUsers())
+	OkResponse(c, 2000, "success", users.PublicUsers())
 }
 
 func (s *Users) GetUser(c *gin.Context) {
