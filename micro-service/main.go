@@ -1,7 +1,7 @@
 package main
 
 import (
-    "github.com/spf13/pflag"
+	"github.com/spf13/pflag"
 
 	"github.com/shaun-golang/micro-service/domain"
 	"github.com/shaun-golang/micro-service/infrastructure"
@@ -9,18 +9,20 @@ import (
 )
 
 var (
-    conf = pflag.StringP("config", "c", "", "config filepath")
+	conf = pflag.StringP("config", "c", "", "config filepath")
 )
 
 func main() {
 
 	// Init Config File
-    pflag.Parse()
-    if err := infrastructure.InitConfig(*conf); err != nil {
-        panic(err)
-    }
+	pflag.Parse()
+	if err := infrastructure.InitConfig(*conf); err != nil {
+		panic(err)
+	}
 
 	infrastructure.InitDB()
+	infrastructure.RedisInit()
+
 	domain.InitRepository()
 	rest.InitGin()
 }
