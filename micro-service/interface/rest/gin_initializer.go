@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 
@@ -17,6 +18,13 @@ func InitGin() {
 	users := handler.NewUsers(domain.UserRepository)
 
 	server := gin.Default()
+
+	// same as
+	// config := cors.DefaultConfig()
+	// config.AllowAllOrigins = true
+	// router.Use(cors.New(config))
+	server.Use(cors.Default())
+
 	//user routes
 	server.POST("/users", users.SaveUser)
 	server.GET("/users", users.GetUsers)
