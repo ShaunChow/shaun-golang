@@ -1,13 +1,14 @@
 package entity
 
 import (
-	"gorm.io/gorm"
 	"html"
 	"strings"
 	"time"
 
 	"github.com/badoux/checkmail"
-	"github.com/shaun-golang/micro-service/infrastructure/security"
+	"gorm.io/gorm"
+
+	"github.com/shaun-golang/micro-service/context/security"
 )
 
 type User struct {

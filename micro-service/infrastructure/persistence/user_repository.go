@@ -4,11 +4,12 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/shaun-golang/micro-service/domain/entity"
-	"github.com/shaun-golang/micro-service/domain/repository"
-	"github.com/shaun-golang/micro-service/infrastructure/security"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
+
+	"github.com/shaun-golang/micro-service/context/security"
+	"github.com/shaun-golang/micro-service/domain/entity"
+	"github.com/shaun-golang/micro-service/domain/repository"
 )
 
 type UserRepo struct {
