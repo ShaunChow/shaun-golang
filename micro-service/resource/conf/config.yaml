@@ -15,4 +15,7 @@ redis:
 
 
 grpc:
-  port: 9090
+  server:
+    port: 9090
+  client:
+    port: 9090

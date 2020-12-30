@@ -3,7 +3,6 @@ package grpc
 import (
 	"log"
 
-	"github.com/spf13/viper"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
@@ -14,7 +13,7 @@ import (
 func InitGrpcClient() {
 	var conn *grpc.ClientConn
 
-	conn, err := grpc.Dial(":"+viper.GetString("grpc.client.port"), grpc.WithInsecure())
+	conn, err := grpc.Dial(":9090", grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatalf("Could not connect: %s", err)

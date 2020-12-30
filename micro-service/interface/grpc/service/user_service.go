@@ -17,5 +17,5 @@ func (s *Server) GetUser(ctx context.Context, id *proto.Id) (*proto.User, error)
 
 	log.Printf("Received message body from client: %d", id.Id)
 
-	return &proto.User{Id: 1, FirstName: "1"}, nil
+	return &proto.User{Id: 1, FirstName: "ZhouXiaoyang"}, nil
 }
