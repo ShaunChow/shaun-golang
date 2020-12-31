@@ -14,7 +14,7 @@ import (
 func InitGrpcClient() {
 	var conn *grpc.ClientConn
 
-	conn, err := grpc.Dial(":"+viper.GetString("grpc.client.port"), grpc.WithInsecure())
+	conn, err := grpc.Dial(viper.GetString("grpc.client.ip")+":"+viper.GetString("grpc.client.port"), grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatalf("Could not connect: %s", err)
@@ -25,7 +25,7 @@ func InitGrpcClient() {
 	c := proto.NewUserServiceClient(conn)
 
 	id := proto.Id{
-		Id: 1,
+		Id: 2,
 	}
 
 	response, err := c.GetUser(context.Background(), &id)

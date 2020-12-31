@@ -13,7 +13,7 @@ import (
 func InitGrpcClient() {
 	var conn *grpc.ClientConn
 
-	conn, err := grpc.Dial(":9090", grpc.WithInsecure())
+	conn, err := grpc.Dial("127.0.0.1:9090", grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatalf("Could not connect: %s", err)
