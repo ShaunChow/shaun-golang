@@ -20,6 +20,7 @@ func main() {
 		panic(err)
 	}
 
+	infrastructure.InitLogger()
 	infrastructure.InitDB()
 	//infrastructure.RedisInit()
 

@@ -1,12 +1,11 @@
 package grpc
 
 import (
-	"log"
-
 	"github.com/spf13/viper"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
+	"github.com/shaun-golang/micro-service/infrastructure"
 	proto "github.com/shaun-golang/micro-service/interface/grpc/proto/generated"
 )
 
@@ -14,10 +13,12 @@ import (
 func InitGrpcClient() {
 	var conn *grpc.ClientConn
 
+	log := infrastructure.Logger
+
 	conn, err := grpc.Dial(viper.GetString("grpc.client.ip")+":"+viper.GetString("grpc.client.port"), grpc.WithInsecure())
 
 	if err != nil {
-		log.Fatalf("Could not connect: %s", err)
+		log.Sugar().Fatalf("Could not connect: %s", err)
 	}
 
 	defer conn.Close()
@@ -31,9 +32,9 @@ func InitGrpcClient() {
 	response, err := c.GetUser(context.Background(), &id)
 
 	if err != nil {
-		log.Fatalf("Error when calling GetUser: %s", err)
+		log.Sugar().Fatalf("Error when calling GetUser: %s", err)
 
 	}
 
-	log.Printf("Response from Server: %s", response.FirstName)
+	log.Sugar().Info("Response from Server: %s", response.FirstName)
 }
