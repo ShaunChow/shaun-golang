@@ -25,15 +25,7 @@ func main() {
 
 	domain.InitRepository()
 
-	grpcClientSyn := make(chan bool, 1)
-	go grpc.InitGrpcClient()
-
-	grpcServerSyn := make(chan bool, 1)
 	go grpc.InitGrpcServer()
-
+	go grpc.InitGrpcClient()
 	rest.InitGin()
-
-	<-grpcServerSyn
-	<-grpcClientSyn
-
 }
